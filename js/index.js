@@ -1,20 +1,17 @@
 import * as PIXI from "./pixi.mjs";
-import { User, Admin } from "./prototypes.js";
-import { getPrototypeChain } from "./getPrototypeChain.js";
+import { assetsMap } from "./assetsMap.js";
 
 // Create the application
 const app = new PIXI.Application({
+    width: 800,
+    height: 800,
+    backgroundColor: 0xc2c2c2,
     view: document.getElementById("canvas"),
 });
 
-console.log(
-    getPrototypeChain(app.view).join(" => ")
-);
+const runGame = () => {
+    console.log("LOADED!");
+};
 
-console.log(
-    getPrototypeChain(new User()).join(" => ")
-);
-
-console.log(
-    getPrototypeChain(new Admin()).join(" => ")
-);
+assetsMap.sprites.forEach((value) => app.loader.add(value));
+app.loader.load(runGame);
